@@ -18,6 +18,7 @@ function AdminAllReportCard() {
   useEffect(() => {
     getAllReportCard();
     userSigin();
+    console.log("here");
   }, [currentPage]);
 
   const getAllReportCard = () => {

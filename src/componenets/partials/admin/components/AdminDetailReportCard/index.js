@@ -22,14 +22,14 @@ function AdminDetailReportCard(props) {
     axios({
       url:
         process.env.REACT_APP_BACKEND_URL +
-        process.env.REACT_APP_SINGLE_EXAM_RECORD,
+        process.env.REACT_APP_ADMIN_SINGLE_EXAM_RECORD,
       withCredentials: true,
       method: "post",
       data,
     })
       .then((res) => {
         try {
-          // console.log(res.data.data);
+          console.log(res.data);
           if (res.data.err === true) {
             setIsRedirect404(true);
           }

@@ -7,6 +7,7 @@ import { notificationAlert } from "../../../../../utils/shared";
 function StudentList() {
   const [usersData, setUsersData] = useState([]);
   const [phone_number, setPhone_number] = useState("");
+  const [lastname, setLastname] = useState("");
 
   const [isLoading, setIsLoading] = useState(false);
 
@@ -18,13 +19,14 @@ function StudentList() {
 
   useEffect(() => {
     updateListComponent();
-  }, [currentPage, phone_number]);
+  }, [currentPage, phone_number, lastname]);
 
   const updateListComponent = () => {
     let data = new FormData();
     setIsLoading(true);
     data.append("page", currentPage);
     if (phone_number) data.append("phone_number", phone_number);
+    if (lastname) data.append("lastname", lastname);
     axios({
       url:
         process.env.REACT_APP_BACKEND_URL + process.env.REACT_APP_GET_ALL_USERS,
@@ -79,16 +81,23 @@ function StudentList() {
       <section className="wrapper">
         <h2 className="section-title">لیست کل دانش آموزان</h2>
         <div className="container-fluid">
-          <div className="input-group">
-            <div className="input-group-prepend">
-              <span className="input-group-text">جستجوی دانش آموز </span>
+          <div className="input-group row mx-0">
+            <div className="input-group-prepend col-12 col-md-4 px-0">
+              <span className="input-group-text w-100">جستجوی دانش آموز </span>
             </div>
             <input
               type="text"
-              className="form-control"
+              className="form-control col-12 col-md-4"
               value={phone_number}
               placeholder="شماره تلفن"
               onChange={(e) => setPhone_number(e.target.value)}
+            />
+            <input
+              type="text"
+              className="form-control col-12 col-md-4"
+              value={lastname}
+              placeholder="نام خانوادگی"
+              onChange={(e) => setLastname(e.target.value)}
             />
           </div>
           <br />
